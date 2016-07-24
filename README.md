@@ -36,3 +36,35 @@ Template Directory(settings.py)
             },
         },
     ]
+
+
+
+
+
+
+
+#Django create a “myapp” folder
+    python manage.py startapp authentication
+
+#Migrating the app
+        python manage.py makemigrations
+        python manage.py migrate
+
+
+#Making yourself a superuser
+    python manage.py createsuperuser
+
+
+#Checkpoint
+#To make sure everything is properly configured, let's take a quick break and open Django's shell:
+    python manage.py shell
+    from authentication.models import Account
+    a = Account.objects.latest('created_at')
+
+#To get serialized detail
+    >>> from authentication.models import Account
+    >>> from authentication.serializers import AccountSerializer
+    >>> account = Account.objects.latest('created_at')
+    >>> serialized_account = AccountSerializer(account)
+    >>> serialized_account.data.get('email')
+    >>> serialized_account.data.get('username')
